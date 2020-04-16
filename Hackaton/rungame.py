@@ -1,31 +1,13 @@
 import pygame
 import sys
+from settings import Settings
+from human import Human
+import game_function as gf
 
 window = pygame.display.set_mode((1000, 500))
 pygame.display.set_caption('Banana')
 screen = pygame.Surface((1000, 500))
 info_string = pygame.Surface((1000, 500))
-import pygame, sys
-from settings import Settings
-from human import Human
-import game_function as gf
-
-
-def run_game():
-    FPS = 60
-    pygame.init()
-    settings = Settings()
-    screen = pygame.display.set_mode(settings.screen_size)
-    clock = pygame.time.Clock()
-    pygame.display.set_caption("Банан")
-    bg_color = (230, 230, 230)
-    human = Human(settings, screen)
-    while True:
-        gf.check_event()
-        clock.tick(FPS)
-        gf.update_screen(settings, screen, human)
-
-
 
 class Menu:
     def __init__(self, punkts=[126, 140, u'Punkt', (50, 0, 50), (100, 0, 50), 0]):
@@ -77,4 +59,19 @@ punkts = [(400, 100, u'Start', (0, 0, 0), (120, 10, 10), 0), (400, 300, u'Quit',
 
 game = Menu(punkts)
 game.menu()
+
+def run_game():
+    FPS = 60
+    pygame.init()
+    settings = Settings()
+    screen = pygame.display.set_mode(settings.screen_size)
+    clock = pygame.time.Clock()
+    pygame.display.set_caption("Банан")
+    bg_color = (230, 230, 230)
+    human = Human(settings, screen)
+    while True:
+        gf.check_event()
+        clock.tick(FPS)
+        gf.update_screen(settings, screen, human)
+        
 run_game()
