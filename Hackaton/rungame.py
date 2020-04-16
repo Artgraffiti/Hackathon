@@ -5,17 +5,17 @@ import game_function as gf
 
 
 def run_game():
+    FPS = 60
     pygame.init()
-    ai_settings = Settings()
-    screen = pygame.display.set_mode(ai_settings.screen_size)
+    settings = Settings()
+    screen = pygame.display.set_mode(settings.screen_size)
+    clock = pygame.time.Clock()
     pygame.display.set_caption("Банан")
     bg_color = (230, 230, 230)
-    human = Human(screen)
+    human = Human(settings, screen)
     while True:
         gf.check_event()
-        human.update()
-        screen.fill(ai_settings.bg_color)
-        human.blitme()
-        pygame.display.flip()
+        clock.tick(FPS)
+        gf.update_screen(settings, screen, human)
 
 run_game()
