@@ -16,7 +16,8 @@ text = f2.render('Music', 1, (0, 0, 0))
 class Settings:
     def __init__(self, pun):
         self.punkts = pun
-
+        self.human_number = 10
+        
     def render(self, surface, font, num_punkt):
         for r in self.punkts:
             if num_punkt == r[5]:
