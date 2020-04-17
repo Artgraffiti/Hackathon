@@ -1,36 +1,48 @@
 import pygame
 import sys
-from settings import Settings
+from Window import Window
 from human import Human
 import game_function as gf
+from Settings import Settings
 
-window = pygame.display.set_mode((1000, 500))
+pygame.init()
+
+window = pygame.display.set_mode((1000, 700))
 pygame.display.set_caption('Banana')
-screen = pygame.Surface((1000, 500))
-info_string = pygame.Surface((1000, 500))
+screen = pygame.Surface((1000, 1000))
+
+#Window
+
+banana_surf = pygame.image.load('images/banana2.jpg')
+banana_rect = banana_surf.get_rect(bottomright=(1000, 1000))
+
+#Banana
+
+punk2 = [(500, 240, u'On', (0, 0, 0), (120, 10, 120), 1), (600, 240, u'Off', (0, 0, 0), (120, 10, 120), 2), (50, 60, u'Back', (0, 0, 0), (120, 0, 10), 0)]
+settings = Settings(punk2)
+
 
 class Menu:
-    def __init__(self, punkts=[126, 140, u'Punkt', (50, 0, 50), (100, 0, 50), 0]):
-        self.punkts = punkts
+    def __init__(self, pun):
+        self.punkts = pun
 
     def render(self, surface, font, num_punkt):
         for r in self.punkts:
             if num_punkt == r[5]:
-                surface.blit(font.render(r[2], 1, r[4]), (r[0], r[1] -30))
+                surface.blit(font.render(r[2], 1, r[4]), (r[0], r[1] - 30))
             else:
-                surface.blit(font.render(r[2], 1, r[3]), (r[0], r[1] -30))
+                surface.blit(font.render(r[2], 1, r[3]), (r[0], r[1] - 30))
 
     def menu(self):
         done = True
         pygame.font.init()
-        font_menu = pygame.font.Font(None, 100)
+        font_menu = pygame.font.Font(None, 120)
         punkt = 0
         while done:
-            info_string.fill((230, 230, 230))
-            screen.fill((230, 230, 230))
+            screen.blit(banana_surf, banana_rect)
             mp = pygame.mouse.get_pos()
             for i in self.punkts:
-                if i[0] < mp[0] < i[0] + 155 and i[1] < mp[1] < i[1] + 50:
+                if i[0] < mp[0] < i[0] + 155 and i[1] < mp[1] < i[1] + 70:
                     punkt = i[5]
             self.render(screen, font_menu, punkt)
 
@@ -38,10 +50,8 @@ class Menu:
                 if e.type == pygame.QUIT:
                     sys.exit()
                 if e.type == pygame.KEYDOWN:
-                    if e.key == pygame.K_ESCAPE:
-                        sys.exit()
                     if e.key == pygame.K_UP:
-                        if punkt > 0:
+                        if punkt >= 0:
                             punkt -= 1
                     if e.key == pygame.K_DOWN:
                         if punkt < len(self.punkts) - 1:
@@ -49,16 +59,22 @@ class Menu:
                     if e.key == pygame.K_SPACE:
                         if punkt == 0:
                             done = False
+                        elif punkt == 1:
+                            settings.settings()
+                        elif punkt == 2:
+                            sys.exit()
                 if e.type == pygame.MOUSEBUTTONDOWN and e.button == 1:
                     if punkt == 0:
                         done = False
                     elif punkt == 1:
+                        settings.settings()
+                    elif punkt == 2:
                         sys.exit()
-            window.blit(info_string, (0, 0))
-            window.blit(screen, (0, 30))
+
+            window.blit(screen, (0, 0))
             pygame.display.flip()
 
-punkts = [(400, 100, u'Start', (0, 0, 0), (120, 10, 10), 0), (400, 300, u'Quit', (0, 0, 0), (120, 10, 10), 1)]
+punkts = [(400, 100, u'Start', (0, 0, 0), (120, 10, 120), 0), (400, 500, u'Quit', (0, 0, 0), (120, 10, 10), 2), (330, 300, u'Settings', (0, 0, 0), (120, 10, 10), 1)]
 
 game = Menu(punkts)
 game.menu()
@@ -66,15 +82,13 @@ game.menu()
 def run_game():
     fps = 60
     pygame.init()
-    settings = Settings()
-    screen = pygame.display.set_mode(settings.screen_size)
+    win = Window()
+    scr = pygame.display.set_mode(win.screen_size)
     clock = pygame.time.Clock()
     pygame.display.set_caption("Банан")
-    bg_color = (230, 230, 230)
-    human = Human(settings, screen)
+    human = Human(win, scr)
     while True:
         gf.check_event()
         clock.tick(fps)
-        gf.update_screen(settings, screen, human)
-        
+        gf.update_screen(win, scr, human)
 run_game()
