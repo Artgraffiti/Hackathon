@@ -46,6 +46,9 @@ class Menu:
                     if e.key == pygame.K_DOWN:
                         if punkt < len(self.punkts) - 1:
                             punkt += 1
+                    if e.key == pygame.K_SPACE:
+                        if punkt == 0:
+                            done = False
                 if e.type == pygame.MOUSEBUTTONDOWN and e.button == 1:
                     if punkt == 0:
                         done = False
