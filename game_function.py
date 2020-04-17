@@ -6,8 +6,10 @@ def check_event():
         if event.type == pygame.QUIT:
             sys.exit()
 
-def update_screen(settings, screen, human):
-    human.update()
+def update_screen(settings, screen, humans):
+    for human in humans:
+        human.update()
     screen.fill(settings.bg_color)
-    human.blitme()
+    for human in humans:
+        human.blitme()
     pygame.display.flip()
