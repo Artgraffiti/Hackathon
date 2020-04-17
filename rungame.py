@@ -86,9 +86,14 @@ def run_game():
     scr = pygame.display.set_mode(win.screen_size)
     clock = pygame.time.Clock()
     pygame.display.set_caption("Банан")
-    human = Human(win, scr)
+    settings = Settings(pun=None)
+    humans = []
+    for i in range(settings.human_number):
+        humans.append(Human(win, scr))
+        
     while True:
         gf.check_event()
         clock.tick(fps)
-        gf.update_screen(win, scr, human)
+        gf.update_screen(win, scr, humans)
+
 run_game()
