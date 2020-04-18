@@ -8,17 +8,17 @@ from Settings import Settings
 pygame.init()
 
 window = pygame.display.set_mode((1000, 700))
-pygame.display.set_caption('Banana')
+pygame.display.set_caption('COVID - 19 (SIMULATOR)')
 screen = pygame.Surface((1000, 1000))
 
 #Window
 
 banana_surf = pygame.image.load('images/banana2.jpg')
-banana_rect = banana_surf.get_rect(bottomright=(1000, 1000))
+banana_rect = banana_surf.get_rect(bottomright=(1250, 800))
 
 #Banana
 
-punk2 = [(500, 240, u'On', (0, 0, 0), (120, 10, 120), 1), (600, 240, u'Off', (0, 0, 0), (120, 10, 120), 2), (50, 60, u'Back', (0, 0, 0), (120, 0, 10), 0)]
+punk2 = [(500, 240, u'On', (255, 50, 50), (120, 10, 10), 1), (600, 240, u'Off', (255, 50, 50), (120, 10, 10), 2), (50, 60, u'Back', (255, 50, 50), (120, 0, 0), 0)]
 settings = Settings(punk2)
 
 
@@ -74,7 +74,7 @@ class Menu:
             window.blit(screen, (0, 0))
             pygame.display.flip()
 
-punkts = [(400, 100, u'Start', (0, 0, 0), (120, 10, 120), 0), (400, 500, u'Quit', (0, 0, 0), (120, 10, 10), 2), (330, 300, u'Settings', (0, 0, 0), (120, 10, 10), 1)]
+punkts = [(400, 100, u'Start', (0, 250, 250), (0, 100, 255), 0), (400, 500, u'Quit', (0, 250, 250), (0, 100, 255), 2), (330, 300, u'Settings', (0, 250, 250), (0, 100, 255), 1)]
 
 game = Menu(punkts)
 game.menu()
@@ -85,7 +85,7 @@ def run_game():
     win = Window()
     scr = pygame.display.set_mode(win.screen_size)
     clock = pygame.time.Clock()
-    pygame.display.set_caption("Банан")
+    pygame.display.set_caption("COVID - 19 (SIMULATOR)")
     s = Settings(pun=None)
     humans = []
     for i in range(s.human_number-1):

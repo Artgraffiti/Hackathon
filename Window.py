@@ -1,7 +1,7 @@
 class Window:
     def __init__(self):
         self.screen_size = (1200, 800)
-        self.bg_color = (255, 255, 255)
+        self.bg_color = (100, 100, 100)
         self.human_speed = 70
 
         self.frame_top_border = 100

@@ -4,7 +4,7 @@ import sys
 pygame.init()
 
 window = pygame.display.set_mode((1000, 700))
-pygame.display.set_caption('Banana')
+pygame.display.set_caption('COVID - 19 (SIMULATOR)')
 screen = pygame.Surface((1000, 700))
 pygame.mixer.music.load('music/videoplayback.mp3')
 pygame.mixer.music.play(-1)
@@ -12,6 +12,9 @@ pygame.mixer.music.play(-1)
 f = pygame.font.Font(None, 50)
 f2 = pygame.font.Font(None, 90)
 text = f2.render('Music', 1, (0, 0, 0))
+
+banana_surf = pygame.image.load('images/banana.jpg')
+banana_rect = banana_surf.get_rect(bottomright=(1250, 800))
 
 class Settings:
     def __init__(self, pun):
@@ -30,7 +33,7 @@ class Settings:
         pygame.font.init()
         punkt = 0
         while done2:
-            screen.fill((225, 225, 0))
+            screen.blit(banana_surf, banana_rect)
             mp = pygame.mouse.get_pos()
             for i in self.punkts:
                 if i[0] < mp[0] < i[0] + 155 and i[1] < mp[1] < i[1] + 70:
