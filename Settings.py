@@ -66,4 +66,3 @@ class Settings:
             screen.blit(text, (250, 190))
             window.blit(screen, (0, 0))
             pygame.display.flip()
-

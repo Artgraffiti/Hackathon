@@ -29,9 +29,9 @@ class Menu:
     def render(self, surface, font, num_punkt):
         for r in self.punkts:
             if num_punkt == r[5]:
-                surface.blit(font.render(r[2], 1, r[4]), (r[0], r[1] - 30))
+                surface.blit(font.render(r[2], 1, r[4]), (r[0], r[1]))
             else:
-                surface.blit(font.render(r[2], 1, r[3]), (r[0], r[1] - 30))
+                surface.blit(font.render(r[2], 1, r[3]), (r[0], r[1]))
 
     def menu(self):
         done = True
@@ -86,9 +86,9 @@ def run_game():
     scr = pygame.display.set_mode(win.screen_size)
     clock = pygame.time.Clock()
     pygame.display.set_caption("Банан")
-    settings = Settings(pun=None)
+    s = Settings(pun=None)
     humans = []
-    for i in range(settings.human_number-1):
+    for i in range(s.human_number-1):
         humans.append(Human(win, scr))
     ill_human = Human(win, scr)
     ill_human.is_ill = True

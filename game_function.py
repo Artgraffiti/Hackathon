@@ -9,7 +9,8 @@ def check_event():
             sys.exit()
 
 def nearby(human, ill_human):
-    '''Проверяет рядом ли human и ill_human'''
+
+    """Проверяет рядом ли human и ill_human"""
     if ill_human.rect.left <= human.rect.right and \
        ill_human.rect.right >= human.rect.left and \
        ill_human.rect.bottom >= human.rect.top and \
@@ -18,7 +19,8 @@ def nearby(human, ill_human):
     
 
 def medical_exam(humans, ill_humans):
-    '''Проверяет заболевших в списке humans'''
+
+    """Проверяет заболевших в списке humans"""
     for human in humans:
         for ill_human in ill_humans:
             if nearby(human, ill_human):
@@ -41,4 +43,3 @@ def update_screen(settings, screen, humans, ill_humans):
     for ill_human in ill_humans:
         ill_human.blitme()
     pygame.display.flip()
-
