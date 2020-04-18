@@ -8,3 +8,5 @@ class Window:
         self.frame_bottom_border = 600
         self.frame_left_border = 50
         self.frame_right_border = 550
+
+        self.infection_chance = 30
