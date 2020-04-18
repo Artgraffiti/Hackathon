@@ -16,8 +16,21 @@ class Human:
         self.center_x = float(self.rect.centerx)
         self.center_y = float(self.rect.centery)
         self.moving = True
+        self.is_ill = False
+
 
     def update(self):
+
+        if self.is_ill:
+            x = self.rect.centerx
+            y = self.rect.centery
+            self.image = pygame.image.load('images/ill_human.png')
+            self.rect = self.image.get_rect()
+            self.rect.centerx = x
+            self.rect.centery = y
+            self.center_x = float(self.rect.centerx)
+            self.center_y = float(self.rect.centery)
+
         if self.moving:
             if self.center_y > self.settings.frame_top_border and self.center_y < self.settings.frame_bottom_border:
                 self.center_y += randint(-self.settings.human_speed, self.settings.human_speed) / 10
@@ -40,4 +53,5 @@ class Human:
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
+
 
