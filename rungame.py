@@ -88,12 +88,20 @@ def run_game():
     pygame.display.set_caption("Банан")
     settings = Settings(pun=None)
     humans = []
-    for i in range(settings.human_number):
+    for i in range(settings.human_number-1):
         humans.append(Human(win, scr))
+    ill_human = Human(win, scr)
+    ill_human.is_ill = True
+    ill_humans = [ill_human]
         
     while True:
         gf.check_event()
         clock.tick(fps)
-        gf.update_screen(win, scr, humans)
+        gf.update_screen(win, scr, humans, ill_humans)
+        for human in humans:
+            if human.is_ill:
+                humans.pop(humans.index(human))
+                ill_humans.append(human)
+        
 
 run_game()
