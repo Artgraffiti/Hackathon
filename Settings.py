@@ -16,7 +16,7 @@ text = f2.render('Music', 1, (0, 0, 0))
 class Settings:
     def __init__(self, pun):
         self.punkts = pun
-        self.human_number = 10
+        self.human_number = 50
         
     def render(self, surface, font, num_punkt):
         for r in self.punkts:
@@ -66,3 +66,4 @@ class Settings:
             screen.blit(text, (250, 190))
             window.blit(screen, (0, 0))
             pygame.display.flip()
+
